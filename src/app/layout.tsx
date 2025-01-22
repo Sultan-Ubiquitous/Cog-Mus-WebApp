@@ -33,12 +33,14 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
+          <div className="bg-indigo-950">
           <SignedOut>
             <SignInButton />
           </SignedOut>
           <SignedIn>
             <UserButton />
           </SignedIn>
+          </div>
           {children}
         </body>
       </html>

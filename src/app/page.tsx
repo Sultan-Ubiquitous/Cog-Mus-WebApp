@@ -136,7 +136,7 @@ export default function Home() {
       <p className="text-sm text-gray-600 mb-4">
           Only listen to music
       </p>
-      <button className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-200" onClick={()=>handleNavigation("/games/simon-game")}>
+      <button className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-200" onClick={()=>handleNavigation("/music")}>
         Listen to Music
       </button>
     </div>}

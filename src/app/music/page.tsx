@@ -51,7 +51,8 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 rounded-md shadow-md w-full max-w-md mx-auto">
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="p-6 bg-gray-100 rounded-md shadow-md w-full max-w-md mx-auto">
       <h2 className="text-lg font-bold mb-4">Music Player</h2>
       <audio
         ref={audioRef}
@@ -83,6 +84,7 @@ const MusicPlayer = () => {
       <div className="text-gray-700">
         Time Elapsed: {Math.floor(currentTime / 60)}:{(currentTime % 60).toString().padStart(2, "0")} / 5:00
       </div>
+    </div>
     </div>
   );
 };

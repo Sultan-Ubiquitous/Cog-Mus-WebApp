@@ -1,11 +1,19 @@
 'use client';
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+
 
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const maxDuration = 5 * 60; // 5 minutes in seconds
+
+  const router = useRouter();
+
+  const handleNavigation = (path: string) =>{
+    router.push(path);
+  }
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -47,6 +55,7 @@ const MusicPlayer = () => {
       audioRef.current.currentTime = 0;
       setIsPlaying(false);
       setCurrentTime(0);
+      handleNavigation("/music/feedback");
     }
   };
 
@@ -78,7 +87,7 @@ const MusicPlayer = () => {
           className="px-4 py-2 bg-red-500 text-white rounded-md"
           onClick={handleStop}
         >
-          Stop
+          Stop and give feedback
         </button>
       </div>
       <div className="text-gray-700">

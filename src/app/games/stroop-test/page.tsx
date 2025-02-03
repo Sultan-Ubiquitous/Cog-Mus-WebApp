@@ -1,32 +1,32 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useUser } from "@clerk/nextjs"
-import MusicPlayer from "@/components/MusicPlayback";
+// import { useUser } from "@clerk/nextjs"
+// import MusicPlayer from "@/components/MusicPlayback";
 
 
 const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink'];
 const colorNames = ['Red', 'Blue', 'Green', 'Yellow', 'Orange', 'Purple', 'Pink'];
 
 export default function StroopTest() {
-  const {isLoaded, user} = useUser();
-  const [musicPermission, setMusicPermission] = useState(false);
+  // const {isLoaded, user} = useUser();
+  // const [musicPermission, setMusicPermission] = useState(false);
 
-  useEffect(()=>{
-    const checkGroupStatus = ()=>{
-      return user?.publicMetadata?.group;
-    }
-    const baselineTestStatus =()=>{
-      return user?.publicMetadata?.baselineTest;
-    }
-    const playMusic =()=>{
-      if(checkGroupStatus()==='intervention' && baselineTestStatus()==='completed'){
-        setMusicPermission(true);
-      }
-    }
-    if(isLoaded && user){
-      playMusic();
-    }
-  }, [isLoaded, user]);
+  // useEffect(()=>{
+  //   const checkGroupStatus = ()=>{
+  //     return user?.publicMetadata?.group;
+  //   }
+  //   const baselineTestStatus =()=>{
+  //     return user?.publicMetadata?.baselineTest;
+  //   }
+  //   const playMusic =()=>{
+  //     if(checkGroupStatus()==='intervention' && baselineTestStatus()==='completed'){
+  //       setMusicPermission(true);
+  //     }
+  //   }
+  //   if(isLoaded && user){
+  //     playMusic();
+  //   }
+  // }, [isLoaded, user]);
 
   const [currentColor, setCurrentColor] = useState('');
   const [currentWord, setCurrentWord] = useState('');
@@ -129,7 +129,7 @@ export default function StroopTest() {
           </div>
           </div>
           <div className='m-20'>
-          {musicPermission&&<MusicPlayer/>}
+          {/* {musicPermission&&<MusicPlayer/>} */}
           </div>
         </>
       )}

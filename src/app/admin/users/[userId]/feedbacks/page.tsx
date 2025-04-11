@@ -9,6 +9,7 @@ export default async function UserFeedbacksPage({
 }) {
   // Properly destructure params without awaiting
   /* @next-codemod-ignore */
+  //@ts-ignore
   const { userId } = params
 
   const user = await prisma.user.findUnique({

@@ -4,31 +4,38 @@ import prisma from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    
     const { userId } = await auth();
 
     if (!userId) {
-      console.log('Reached till here',userId);
-      
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { feeling, focusEffect, comments } = await req.json();
+    const {
+      focusDifficulty,
+      distractionFrequency,
+      mindWandering,
+      attentionChallenge,
+      calmnessRating,
+      frustrationLevel,
+      musicInfluence,
+      performanceImprovement,
+      strategyUse,
+      taskPrioritization,
+      comments,
+    } = await req.json();
 
-    // Check if user exists in your database
     let user = await prisma.user.findUnique({
       where: { clerkUserId: userId },
     });
 
     if (!user) {
-      // Fetch user details from Clerk
       const clerkUser = await currentUser();
 
       user = await prisma.user.create({
         data: {
-          clerkUserId: userId,
-          email: clerkUser.emailAddresses[0]?.emailAddress || null,
-          firstName: clerkUser.firstName,
+          clerkUserId: userId, //@ts-ignore
+          email: clerkUser.emailAddresses[0]?.emailAddress || null, //@ts-ignore
+          firstName: clerkUser.firstName, //@ts-ignore
           baselineTest: clerkUser?.publicMetadata.baselineTest,
         },
       });
@@ -38,12 +45,19 @@ export async function POST(req: Request) {
     const feedback = await prisma.feedback.create({
       data: {
         userId: user.id,
-        feeling,
-        focusEffect,
+        focusDifficulty,
+        distractionFrequency,
+        mindWandering,
+        attentionChallenge,
+        calmnessRating,
+        frustrationLevel,
+        musicInfluence,
+        performanceImprovement,
+        strategyUse,
+        taskPrioritization,
         comments,
       },
     });
-    
 
     return NextResponse.json(feedback);
   } catch (error) {

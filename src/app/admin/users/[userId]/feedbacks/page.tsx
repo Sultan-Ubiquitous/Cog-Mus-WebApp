@@ -1,14 +1,18 @@
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
+import DeleteFeedbackButton from '@/components/DeleteFeedbackButton'
 
 export default async function UserFeedbacksPage({
   params,
 }: {
   params: { userId: string }
 }) {
+  // Properly destructure params without awaiting
+  const { userId } = params
+
   const user = await prisma.user.findUnique({
     where: {
-      id: params.userId,
+      id: userId,
     },
     include: {
       feedbacks: {
@@ -35,28 +39,74 @@ export default async function UserFeedbacksPage({
       </div>
 
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Feeling</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Focus Effect</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Comments</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {user.feedbacks.map((feedback) => (
-              <tr key={feedback.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {new Date(feedback.createdAt).toLocaleDateString()}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{feedback.feeling}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{feedback.focusEffect}</td>
-                <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{feedback.comments}</td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Focus Difficulty (1-5)</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distraction Frequency (1-5)</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mind Wandering (1-5)</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attention Challenge (1-5)</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Calmness (1-5)</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Frustration</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Music Influence</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Strategy Use</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task Prioritization</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Comments</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {user.feedbacks.map((feedback) => (
+                <tr key={feedback.id}>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {new Date(feedback.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.focusDifficulty ?? '-'}/5
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.distractionFrequency ?? '-'}/5
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.mindWandering ?? '-'}/5
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.attentionChallenge ?? '-'}/5
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.calmnessRating ?? '-'}/5
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.frustrationLevel ?? '-'}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.musicInfluence ?? '-'}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.performanceImprovement ?? '-'}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.strategyUse ?? '-'}
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {feedback.taskPrioritization ?? '-'}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-900 max-w-xs">
+                    <div className="line-clamp-2">
+                      {feedback.comments || '-'}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <DeleteFeedbackButton feedbackId={feedback.id} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {user.feedbacks.length === 0 && (

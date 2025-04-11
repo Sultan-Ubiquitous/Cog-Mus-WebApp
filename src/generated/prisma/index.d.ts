@@ -2134,15 +2134,41 @@ export namespace Prisma {
 
   export type AggregateFeedback = {
     _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
     _min: FeedbackMinAggregateOutputType | null
     _max: FeedbackMaxAggregateOutputType | null
+  }
+
+  export type FeedbackAvgAggregateOutputType = {
+    focusDifficulty: number | null
+    distractionFrequency: number | null
+    mindWandering: number | null
+    attentionChallenge: number | null
+    calmnessRating: number | null
+  }
+
+  export type FeedbackSumAggregateOutputType = {
+    focusDifficulty: number | null
+    distractionFrequency: number | null
+    mindWandering: number | null
+    attentionChallenge: number | null
+    calmnessRating: number | null
   }
 
   export type FeedbackMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    feeling: string | null
-    focusEffect: string | null
+    focusDifficulty: number | null
+    distractionFrequency: number | null
+    mindWandering: number | null
+    attentionChallenge: number | null
+    calmnessRating: number | null
+    frustrationLevel: string | null
+    musicInfluence: string | null
+    performanceImprovement: string | null
+    strategyUse: string | null
+    taskPrioritization: string | null
     comments: string | null
     createdAt: Date | null
   }
@@ -2150,8 +2176,16 @@ export namespace Prisma {
   export type FeedbackMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    feeling: string | null
-    focusEffect: string | null
+    focusDifficulty: number | null
+    distractionFrequency: number | null
+    mindWandering: number | null
+    attentionChallenge: number | null
+    calmnessRating: number | null
+    frustrationLevel: string | null
+    musicInfluence: string | null
+    performanceImprovement: string | null
+    strategyUse: string | null
+    taskPrioritization: string | null
     comments: string | null
     createdAt: Date | null
   }
@@ -2159,19 +2193,51 @@ export namespace Prisma {
   export type FeedbackCountAggregateOutputType = {
     id: number
     userId: number
-    feeling: number
-    focusEffect: number
+    focusDifficulty: number
+    distractionFrequency: number
+    mindWandering: number
+    attentionChallenge: number
+    calmnessRating: number
+    frustrationLevel: number
+    musicInfluence: number
+    performanceImprovement: number
+    strategyUse: number
+    taskPrioritization: number
     comments: number
     createdAt: number
     _all: number
   }
 
 
+  export type FeedbackAvgAggregateInputType = {
+    focusDifficulty?: true
+    distractionFrequency?: true
+    mindWandering?: true
+    attentionChallenge?: true
+    calmnessRating?: true
+  }
+
+  export type FeedbackSumAggregateInputType = {
+    focusDifficulty?: true
+    distractionFrequency?: true
+    mindWandering?: true
+    attentionChallenge?: true
+    calmnessRating?: true
+  }
+
   export type FeedbackMinAggregateInputType = {
     id?: true
     userId?: true
-    feeling?: true
-    focusEffect?: true
+    focusDifficulty?: true
+    distractionFrequency?: true
+    mindWandering?: true
+    attentionChallenge?: true
+    calmnessRating?: true
+    frustrationLevel?: true
+    musicInfluence?: true
+    performanceImprovement?: true
+    strategyUse?: true
+    taskPrioritization?: true
     comments?: true
     createdAt?: true
   }
@@ -2179,8 +2245,16 @@ export namespace Prisma {
   export type FeedbackMaxAggregateInputType = {
     id?: true
     userId?: true
-    feeling?: true
-    focusEffect?: true
+    focusDifficulty?: true
+    distractionFrequency?: true
+    mindWandering?: true
+    attentionChallenge?: true
+    calmnessRating?: true
+    frustrationLevel?: true
+    musicInfluence?: true
+    performanceImprovement?: true
+    strategyUse?: true
+    taskPrioritization?: true
     comments?: true
     createdAt?: true
   }
@@ -2188,8 +2262,16 @@ export namespace Prisma {
   export type FeedbackCountAggregateInputType = {
     id?: true
     userId?: true
-    feeling?: true
-    focusEffect?: true
+    focusDifficulty?: true
+    distractionFrequency?: true
+    mindWandering?: true
+    attentionChallenge?: true
+    calmnessRating?: true
+    frustrationLevel?: true
+    musicInfluence?: true
+    performanceImprovement?: true
+    strategyUse?: true
+    taskPrioritization?: true
     comments?: true
     createdAt?: true
     _all?: true
@@ -2233,6 +2315,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: FeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: FeedbackMinAggregateInputType
@@ -2263,6 +2357,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: FeedbackCountAggregateInputType | true
+    _avg?: FeedbackAvgAggregateInputType
+    _sum?: FeedbackSumAggregateInputType
     _min?: FeedbackMinAggregateInputType
     _max?: FeedbackMaxAggregateInputType
   }
@@ -2270,11 +2366,21 @@ export namespace Prisma {
   export type FeedbackGroupByOutputType = {
     id: string
     userId: string
-    feeling: string | null
-    focusEffect: string | null
+    focusDifficulty: number | null
+    distractionFrequency: number | null
+    mindWandering: number | null
+    attentionChallenge: number | null
+    calmnessRating: number | null
+    frustrationLevel: string | null
+    musicInfluence: string | null
+    performanceImprovement: string | null
+    strategyUse: string | null
+    taskPrioritization: string | null
     comments: string | null
     createdAt: Date
     _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
     _min: FeedbackMinAggregateOutputType | null
     _max: FeedbackMaxAggregateOutputType | null
   }
@@ -2296,8 +2402,16 @@ export namespace Prisma {
   export type FeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    feeling?: boolean
-    focusEffect?: boolean
+    focusDifficulty?: boolean
+    distractionFrequency?: boolean
+    mindWandering?: boolean
+    attentionChallenge?: boolean
+    calmnessRating?: boolean
+    frustrationLevel?: boolean
+    musicInfluence?: boolean
+    performanceImprovement?: boolean
+    strategyUse?: boolean
+    taskPrioritization?: boolean
     comments?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2306,8 +2420,16 @@ export namespace Prisma {
   export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    feeling?: boolean
-    focusEffect?: boolean
+    focusDifficulty?: boolean
+    distractionFrequency?: boolean
+    mindWandering?: boolean
+    attentionChallenge?: boolean
+    calmnessRating?: boolean
+    frustrationLevel?: boolean
+    musicInfluence?: boolean
+    performanceImprovement?: boolean
+    strategyUse?: boolean
+    taskPrioritization?: boolean
     comments?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2316,8 +2438,16 @@ export namespace Prisma {
   export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    feeling?: boolean
-    focusEffect?: boolean
+    focusDifficulty?: boolean
+    distractionFrequency?: boolean
+    mindWandering?: boolean
+    attentionChallenge?: boolean
+    calmnessRating?: boolean
+    frustrationLevel?: boolean
+    musicInfluence?: boolean
+    performanceImprovement?: boolean
+    strategyUse?: boolean
+    taskPrioritization?: boolean
     comments?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2326,13 +2456,21 @@ export namespace Prisma {
   export type FeedbackSelectScalar = {
     id?: boolean
     userId?: boolean
-    feeling?: boolean
-    focusEffect?: boolean
+    focusDifficulty?: boolean
+    distractionFrequency?: boolean
+    mindWandering?: boolean
+    attentionChallenge?: boolean
+    calmnessRating?: boolean
+    frustrationLevel?: boolean
+    musicInfluence?: boolean
+    performanceImprovement?: boolean
+    strategyUse?: boolean
+    taskPrioritization?: boolean
     comments?: boolean
     createdAt?: boolean
   }
 
-  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "feeling" | "focusEffect" | "comments" | "createdAt", ExtArgs["result"]["feedback"]>
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "focusDifficulty" | "distractionFrequency" | "mindWandering" | "attentionChallenge" | "calmnessRating" | "frustrationLevel" | "musicInfluence" | "performanceImprovement" | "strategyUse" | "taskPrioritization" | "comments" | "createdAt", ExtArgs["result"]["feedback"]>
   export type FeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2351,8 +2489,16 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      feeling: string | null
-      focusEffect: string | null
+      focusDifficulty: number | null
+      distractionFrequency: number | null
+      mindWandering: number | null
+      attentionChallenge: number | null
+      calmnessRating: number | null
+      frustrationLevel: string | null
+      musicInfluence: string | null
+      performanceImprovement: string | null
+      strategyUse: string | null
+      taskPrioritization: string | null
       comments: string | null
       createdAt: Date
     }, ExtArgs["result"]["feedback"]>
@@ -2781,8 +2927,16 @@ export namespace Prisma {
   interface FeedbackFieldRefs {
     readonly id: FieldRef<"Feedback", 'String'>
     readonly userId: FieldRef<"Feedback", 'String'>
-    readonly feeling: FieldRef<"Feedback", 'String'>
-    readonly focusEffect: FieldRef<"Feedback", 'String'>
+    readonly focusDifficulty: FieldRef<"Feedback", 'Int'>
+    readonly distractionFrequency: FieldRef<"Feedback", 'Int'>
+    readonly mindWandering: FieldRef<"Feedback", 'Int'>
+    readonly attentionChallenge: FieldRef<"Feedback", 'Int'>
+    readonly calmnessRating: FieldRef<"Feedback", 'Int'>
+    readonly frustrationLevel: FieldRef<"Feedback", 'String'>
+    readonly musicInfluence: FieldRef<"Feedback", 'String'>
+    readonly performanceImprovement: FieldRef<"Feedback", 'String'>
+    readonly strategyUse: FieldRef<"Feedback", 'String'>
+    readonly taskPrioritization: FieldRef<"Feedback", 'String'>
     readonly comments: FieldRef<"Feedback", 'String'>
     readonly createdAt: FieldRef<"Feedback", 'DateTime'>
   }
@@ -3230,8 +3384,16 @@ export namespace Prisma {
   export const FeedbackScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    feeling: 'feeling',
-    focusEffect: 'focusEffect',
+    focusDifficulty: 'focusDifficulty',
+    distractionFrequency: 'distractionFrequency',
+    mindWandering: 'mindWandering',
+    attentionChallenge: 'attentionChallenge',
+    calmnessRating: 'calmnessRating',
+    frustrationLevel: 'frustrationLevel',
+    musicInfluence: 'musicInfluence',
+    performanceImprovement: 'performanceImprovement',
+    strategyUse: 'strategyUse',
+    taskPrioritization: 'taskPrioritization',
     comments: 'comments',
     createdAt: 'createdAt'
   };
@@ -3336,6 +3498,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -3417,8 +3593,16 @@ export namespace Prisma {
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     id?: StringFilter<"Feedback"> | string
     userId?: StringFilter<"Feedback"> | string
-    feeling?: StringNullableFilter<"Feedback"> | string | null
-    focusEffect?: StringNullableFilter<"Feedback"> | string | null
+    focusDifficulty?: IntNullableFilter<"Feedback"> | number | null
+    distractionFrequency?: IntNullableFilter<"Feedback"> | number | null
+    mindWandering?: IntNullableFilter<"Feedback"> | number | null
+    attentionChallenge?: IntNullableFilter<"Feedback"> | number | null
+    calmnessRating?: IntNullableFilter<"Feedback"> | number | null
+    frustrationLevel?: StringNullableFilter<"Feedback"> | string | null
+    musicInfluence?: StringNullableFilter<"Feedback"> | string | null
+    performanceImprovement?: StringNullableFilter<"Feedback"> | string | null
+    strategyUse?: StringNullableFilter<"Feedback"> | string | null
+    taskPrioritization?: StringNullableFilter<"Feedback"> | string | null
     comments?: StringNullableFilter<"Feedback"> | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -3427,8 +3611,16 @@ export namespace Prisma {
   export type FeedbackOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    feeling?: SortOrderInput | SortOrder
-    focusEffect?: SortOrderInput | SortOrder
+    focusDifficulty?: SortOrderInput | SortOrder
+    distractionFrequency?: SortOrderInput | SortOrder
+    mindWandering?: SortOrderInput | SortOrder
+    attentionChallenge?: SortOrderInput | SortOrder
+    calmnessRating?: SortOrderInput | SortOrder
+    frustrationLevel?: SortOrderInput | SortOrder
+    musicInfluence?: SortOrderInput | SortOrder
+    performanceImprovement?: SortOrderInput | SortOrder
+    strategyUse?: SortOrderInput | SortOrder
+    taskPrioritization?: SortOrderInput | SortOrder
     comments?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -3440,8 +3632,16 @@ export namespace Prisma {
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     userId?: StringFilter<"Feedback"> | string
-    feeling?: StringNullableFilter<"Feedback"> | string | null
-    focusEffect?: StringNullableFilter<"Feedback"> | string | null
+    focusDifficulty?: IntNullableFilter<"Feedback"> | number | null
+    distractionFrequency?: IntNullableFilter<"Feedback"> | number | null
+    mindWandering?: IntNullableFilter<"Feedback"> | number | null
+    attentionChallenge?: IntNullableFilter<"Feedback"> | number | null
+    calmnessRating?: IntNullableFilter<"Feedback"> | number | null
+    frustrationLevel?: StringNullableFilter<"Feedback"> | string | null
+    musicInfluence?: StringNullableFilter<"Feedback"> | string | null
+    performanceImprovement?: StringNullableFilter<"Feedback"> | string | null
+    strategyUse?: StringNullableFilter<"Feedback"> | string | null
+    taskPrioritization?: StringNullableFilter<"Feedback"> | string | null
     comments?: StringNullableFilter<"Feedback"> | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -3450,13 +3650,23 @@ export namespace Prisma {
   export type FeedbackOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    feeling?: SortOrderInput | SortOrder
-    focusEffect?: SortOrderInput | SortOrder
+    focusDifficulty?: SortOrderInput | SortOrder
+    distractionFrequency?: SortOrderInput | SortOrder
+    mindWandering?: SortOrderInput | SortOrder
+    attentionChallenge?: SortOrderInput | SortOrder
+    calmnessRating?: SortOrderInput | SortOrder
+    frustrationLevel?: SortOrderInput | SortOrder
+    musicInfluence?: SortOrderInput | SortOrder
+    performanceImprovement?: SortOrderInput | SortOrder
+    strategyUse?: SortOrderInput | SortOrder
+    taskPrioritization?: SortOrderInput | SortOrder
     comments?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: FeedbackCountOrderByAggregateInput
+    _avg?: FeedbackAvgOrderByAggregateInput
     _max?: FeedbackMaxOrderByAggregateInput
     _min?: FeedbackMinOrderByAggregateInput
+    _sum?: FeedbackSumOrderByAggregateInput
   }
 
   export type FeedbackScalarWhereWithAggregatesInput = {
@@ -3465,8 +3675,16 @@ export namespace Prisma {
     NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Feedback"> | string
     userId?: StringWithAggregatesFilter<"Feedback"> | string
-    feeling?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    focusEffect?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    focusDifficulty?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    distractionFrequency?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    mindWandering?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    attentionChallenge?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    calmnessRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    frustrationLevel?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    musicInfluence?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    performanceImprovement?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    strategyUse?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    taskPrioritization?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     comments?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
   }
@@ -3554,8 +3772,16 @@ export namespace Prisma {
 
   export type FeedbackCreateInput = {
     id?: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutFeedbacksInput
@@ -3564,16 +3790,32 @@ export namespace Prisma {
   export type FeedbackUncheckedCreateInput = {
     id?: string
     userId: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
   }
 
   export type FeedbackUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutFeedbacksNestedInput
@@ -3582,8 +3824,16 @@ export namespace Prisma {
   export type FeedbackUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3591,16 +3841,32 @@ export namespace Prisma {
   export type FeedbackCreateManyInput = {
     id?: string
     userId: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
   }
 
   export type FeedbackUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3608,8 +3874,16 @@ export namespace Prisma {
   export type FeedbackUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3787,6 +4061,17 @@ export namespace Prisma {
     _max?: NestedEnumGroupTypeFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3795,17 +4080,41 @@ export namespace Prisma {
   export type FeedbackCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    feeling?: SortOrder
-    focusEffect?: SortOrder
+    focusDifficulty?: SortOrder
+    distractionFrequency?: SortOrder
+    mindWandering?: SortOrder
+    attentionChallenge?: SortOrder
+    calmnessRating?: SortOrder
+    frustrationLevel?: SortOrder
+    musicInfluence?: SortOrder
+    performanceImprovement?: SortOrder
+    strategyUse?: SortOrder
+    taskPrioritization?: SortOrder
     comments?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type FeedbackAvgOrderByAggregateInput = {
+    focusDifficulty?: SortOrder
+    distractionFrequency?: SortOrder
+    mindWandering?: SortOrder
+    attentionChallenge?: SortOrder
+    calmnessRating?: SortOrder
   }
 
   export type FeedbackMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    feeling?: SortOrder
-    focusEffect?: SortOrder
+    focusDifficulty?: SortOrder
+    distractionFrequency?: SortOrder
+    mindWandering?: SortOrder
+    attentionChallenge?: SortOrder
+    calmnessRating?: SortOrder
+    frustrationLevel?: SortOrder
+    musicInfluence?: SortOrder
+    performanceImprovement?: SortOrder
+    strategyUse?: SortOrder
+    taskPrioritization?: SortOrder
     comments?: SortOrder
     createdAt?: SortOrder
   }
@@ -3813,10 +4122,42 @@ export namespace Prisma {
   export type FeedbackMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    feeling?: SortOrder
-    focusEffect?: SortOrder
+    focusDifficulty?: SortOrder
+    distractionFrequency?: SortOrder
+    mindWandering?: SortOrder
+    attentionChallenge?: SortOrder
+    calmnessRating?: SortOrder
+    frustrationLevel?: SortOrder
+    musicInfluence?: SortOrder
+    performanceImprovement?: SortOrder
+    strategyUse?: SortOrder
+    taskPrioritization?: SortOrder
     comments?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type FeedbackSumOrderByAggregateInput = {
+    focusDifficulty?: SortOrder
+    distractionFrequency?: SortOrder
+    mindWandering?: SortOrder
+    attentionChallenge?: SortOrder
+    calmnessRating?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FeedbackCreateNestedManyWithoutUserInput = {
@@ -3885,6 +4226,14 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
     connectOrCreate?: UserCreateOrConnectWithoutFeedbacksInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutFeedbacksNestedInput = {
@@ -4038,18 +4387,61 @@ export namespace Prisma {
     _max?: NestedEnumGroupTypeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type FeedbackCreateWithoutUserInput = {
     id?: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
   }
 
   export type FeedbackUncheckedCreateWithoutUserInput = {
     id?: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
   }
@@ -4086,8 +4478,16 @@ export namespace Prisma {
     NOT?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
     id?: StringFilter<"Feedback"> | string
     userId?: StringFilter<"Feedback"> | string
-    feeling?: StringNullableFilter<"Feedback"> | string | null
-    focusEffect?: StringNullableFilter<"Feedback"> | string | null
+    focusDifficulty?: IntNullableFilter<"Feedback"> | number | null
+    distractionFrequency?: IntNullableFilter<"Feedback"> | number | null
+    mindWandering?: IntNullableFilter<"Feedback"> | number | null
+    attentionChallenge?: IntNullableFilter<"Feedback"> | number | null
+    calmnessRating?: IntNullableFilter<"Feedback"> | number | null
+    frustrationLevel?: StringNullableFilter<"Feedback"> | string | null
+    musicInfluence?: StringNullableFilter<"Feedback"> | string | null
+    performanceImprovement?: StringNullableFilter<"Feedback"> | string | null
+    strategyUse?: StringNullableFilter<"Feedback"> | string | null
+    taskPrioritization?: StringNullableFilter<"Feedback"> | string | null
     comments?: StringNullableFilter<"Feedback"> | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
   }
@@ -4154,32 +4554,64 @@ export namespace Prisma {
 
   export type FeedbackCreateManyUserInput = {
     id?: string
-    feeling?: string | null
-    focusEffect?: string | null
+    focusDifficulty?: number | null
+    distractionFrequency?: number | null
+    mindWandering?: number | null
+    attentionChallenge?: number | null
+    calmnessRating?: number | null
+    frustrationLevel?: string | null
+    musicInfluence?: string | null
+    performanceImprovement?: string | null
+    strategyUse?: string | null
+    taskPrioritization?: string | null
     comments?: string | null
     createdAt?: Date | string
   }
 
   export type FeedbackUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedbackUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedbackUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    feeling?: NullableStringFieldUpdateOperationsInput | string | null
-    focusEffect?: NullableStringFieldUpdateOperationsInput | string | null
+    focusDifficulty?: NullableIntFieldUpdateOperationsInput | number | null
+    distractionFrequency?: NullableIntFieldUpdateOperationsInput | number | null
+    mindWandering?: NullableIntFieldUpdateOperationsInput | number | null
+    attentionChallenge?: NullableIntFieldUpdateOperationsInput | number | null
+    calmnessRating?: NullableIntFieldUpdateOperationsInput | number | null
+    frustrationLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    musicInfluence?: NullableStringFieldUpdateOperationsInput | string | null
+    performanceImprovement?: NullableStringFieldUpdateOperationsInput | string | null
+    strategyUse?: NullableStringFieldUpdateOperationsInput | string | null
+    taskPrioritization?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

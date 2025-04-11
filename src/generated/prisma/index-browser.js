@@ -131,8 +131,16 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  feeling: 'feeling',
-  focusEffect: 'focusEffect',
+  focusDifficulty: 'focusDifficulty',
+  distractionFrequency: 'distractionFrequency',
+  mindWandering: 'mindWandering',
+  attentionChallenge: 'attentionChallenge',
+  calmnessRating: 'calmnessRating',
+  frustrationLevel: 'frustrationLevel',
+  musicInfluence: 'musicInfluence',
+  performanceImprovement: 'performanceImprovement',
+  strategyUse: 'strategyUse',
+  taskPrioritization: 'taskPrioritization',
   comments: 'comments',
   createdAt: 'createdAt'
 };

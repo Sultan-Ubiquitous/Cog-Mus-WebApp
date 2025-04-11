@@ -39,13 +39,21 @@ model User {
 }
 
 model Feedback {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  feeling     String?
-  focusEffect String?
-  comments    String?
-  createdAt   DateTime @default(now())
+  id                     String   @id @default(cuid())
+  userId                 String
+  user                   User     @relation(fields: [userId], references: [id])
+  focusDifficulty        Int?
+  distractionFrequency   Int?
+  mindWandering          Int?
+  attentionChallenge     Int?
+  calmnessRating         Int?
+  frustrationLevel       String?
+  musicInfluence         String?
+  performanceImprovement String?
+  strategyUse            String?
+  taskPrioritization     String?
+  comments               String?
+  createdAt              DateTime @default(now())
 
   @@index([userId])
   @@map("feedbacks")

@@ -4,8 +4,6 @@ import DeleteFeedbackButton from '@/components/DeleteFeedbackButton'
 
 export default async function UserFeedbacksPage({
   params,
-}: {
-  params: { userId: string }
 }) {
   // Properly destructure params without awaiting
   /* @next-codemod-ignore */

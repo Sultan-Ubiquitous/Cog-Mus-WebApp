@@ -44,17 +44,9 @@ export const GroupType: {
 export type GroupType = (typeof GroupType)[keyof typeof GroupType]
 
 
-export const Sex: {
-  Male: 'Male',
-  Female: 'Female'
-};
-
-export type Sex = (typeof Sex)[keyof typeof Sex]
-
-
 export const YesNo: {
-  Yes: 'Yes',
-  No: 'No'
+  yes: 'yes',
+  no: 'no'
 };
 
 export type YesNo = (typeof YesNo)[keyof typeof YesNo]
@@ -68,10 +60,6 @@ export const BaselineTestStatus: typeof $Enums.BaselineTestStatus
 export type GroupType = $Enums.GroupType
 
 export const GroupType: typeof $Enums.GroupType
-
-export type Sex = $Enums.Sex
-
-export const Sex: typeof $Enums.Sex
 
 export type YesNo = $Enums.YesNo
 
@@ -1069,7 +1057,7 @@ export namespace Prisma {
     email: string | null
     firstName: string | null
     Age: number | null
-    Sex: $Enums.Sex | null
+    Sex: string | null
     MusicalBackground: $Enums.YesNo | null
     ListenedToRagas: $Enums.YesNo | null
     createdAt: Date | null
@@ -1084,7 +1072,7 @@ export namespace Prisma {
     email: string | null
     firstName: string | null
     Age: number | null
-    Sex: $Enums.Sex | null
+    Sex: string | null
     MusicalBackground: $Enums.YesNo | null
     ListenedToRagas: $Enums.YesNo | null
     createdAt: Date | null
@@ -1256,7 +1244,7 @@ export namespace Prisma {
     email: string | null
     firstName: string | null
     Age: number | null
-    Sex: $Enums.Sex | null
+    Sex: string | null
     MusicalBackground: $Enums.YesNo | null
     ListenedToRagas: $Enums.YesNo | null
     createdAt: Date
@@ -1365,7 +1353,7 @@ export namespace Prisma {
       email: string | null
       firstName: string | null
       Age: number | null
-      Sex: $Enums.Sex | null
+      Sex: string | null
       MusicalBackground: $Enums.YesNo | null
       ListenedToRagas: $Enums.YesNo | null
       createdAt: Date
@@ -1801,7 +1789,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly firstName: FieldRef<"User", 'String'>
     readonly Age: FieldRef<"User", 'Int'>
-    readonly Sex: FieldRef<"User", 'Sex'>
+    readonly Sex: FieldRef<"User", 'String'>
     readonly MusicalBackground: FieldRef<"User", 'YesNo'>
     readonly ListenedToRagas: FieldRef<"User", 'YesNo'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -3573,20 +3561,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Sex'
-   */
-  export type EnumSexFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Sex'>
-    
-
-
-  /**
-   * Reference to a field of type 'Sex[]'
-   */
-  export type ListEnumSexFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Sex[]'>
-    
-
-
-  /**
    * Reference to a field of type 'YesNo'
    */
   export type EnumYesNoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'YesNo'>
@@ -3668,7 +3642,7 @@ export namespace Prisma {
     email?: StringNullableFilter<"User"> | string | null
     firstName?: StringNullableFilter<"User"> | string | null
     Age?: IntNullableFilter<"User"> | number | null
-    Sex?: EnumSexNullableFilter<"User"> | $Enums.Sex | null
+    Sex?: StringNullableFilter<"User"> | string | null
     MusicalBackground?: EnumYesNoNullableFilter<"User"> | $Enums.YesNo | null
     ListenedToRagas?: EnumYesNoNullableFilter<"User"> | $Enums.YesNo | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -3703,7 +3677,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     firstName?: StringNullableFilter<"User"> | string | null
     Age?: IntNullableFilter<"User"> | number | null
-    Sex?: EnumSexNullableFilter<"User"> | $Enums.Sex | null
+    Sex?: StringNullableFilter<"User"> | string | null
     MusicalBackground?: EnumYesNoNullableFilter<"User"> | $Enums.YesNo | null
     ListenedToRagas?: EnumYesNoNullableFilter<"User"> | $Enums.YesNo | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -3742,7 +3716,7 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
     Age?: IntNullableWithAggregatesFilter<"User"> | number | null
-    Sex?: EnumSexNullableWithAggregatesFilter<"User"> | $Enums.Sex | null
+    Sex?: StringNullableWithAggregatesFilter<"User"> | string | null
     MusicalBackground?: EnumYesNoNullableWithAggregatesFilter<"User"> | $Enums.YesNo | null
     ListenedToRagas?: EnumYesNoNullableWithAggregatesFilter<"User"> | $Enums.YesNo | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -3859,7 +3833,7 @@ export namespace Prisma {
     email?: string | null
     firstName?: string | null
     Age?: number | null
-    Sex?: $Enums.Sex | null
+    Sex?: string | null
     MusicalBackground?: $Enums.YesNo | null
     ListenedToRagas?: $Enums.YesNo | null
     createdAt?: Date | string
@@ -3875,7 +3849,7 @@ export namespace Prisma {
     email?: string | null
     firstName?: string | null
     Age?: number | null
-    Sex?: $Enums.Sex | null
+    Sex?: string | null
     MusicalBackground?: $Enums.YesNo | null
     ListenedToRagas?: $Enums.YesNo | null
     createdAt?: Date | string
@@ -3891,7 +3865,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3907,7 +3881,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3923,7 +3897,7 @@ export namespace Prisma {
     email?: string | null
     firstName?: string | null
     Age?: number | null
-    Sex?: $Enums.Sex | null
+    Sex?: string | null
     MusicalBackground?: $Enums.YesNo | null
     ListenedToRagas?: $Enums.YesNo | null
     createdAt?: Date | string
@@ -3938,7 +3912,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3953,7 +3927,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4121,13 +4095,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type EnumSexNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Sex | EnumSexFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumSexNullableFilter<$PrismaModel> | $Enums.Sex | null
-  }
-
   export type EnumYesNoNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.YesNo | EnumYesNoFieldRefInput<$PrismaModel> | null
     in?: $Enums.YesNo[] | ListEnumYesNoFieldRefInput<$PrismaModel> | null
@@ -4280,16 +4247,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type EnumSexNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Sex | EnumSexFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumSexNullableWithAggregatesFilter<$PrismaModel> | $Enums.Sex | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumSexNullableFilter<$PrismaModel>
-    _max?: NestedEnumSexNullableFilter<$PrismaModel>
-  }
-
   export type EnumYesNoNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.YesNo | EnumYesNoFieldRefInput<$PrismaModel> | null
     in?: $Enums.YesNo[] | ListEnumYesNoFieldRefInput<$PrismaModel> | null
@@ -4436,10 +4393,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableEnumSexFieldUpdateOperationsInput = {
-    set?: $Enums.Sex | null
-  }
-
   export type NullableEnumYesNoFieldUpdateOperationsInput = {
     set?: $Enums.YesNo | null
   }
@@ -4535,13 +4488,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedEnumSexNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Sex | EnumSexFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumSexNullableFilter<$PrismaModel> | $Enums.Sex | null
   }
 
   export type NestedEnumYesNoNullableFilter<$PrismaModel = never> = {
@@ -4646,16 +4592,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedEnumSexNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Sex | EnumSexFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Sex[] | ListEnumSexFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumSexNullableWithAggregatesFilter<$PrismaModel> | $Enums.Sex | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumSexNullableFilter<$PrismaModel>
-    _max?: NestedEnumSexNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumYesNoNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4786,7 +4722,7 @@ export namespace Prisma {
     email?: string | null
     firstName?: string | null
     Age?: number | null
-    Sex?: $Enums.Sex | null
+    Sex?: string | null
     MusicalBackground?: $Enums.YesNo | null
     ListenedToRagas?: $Enums.YesNo | null
     createdAt?: Date | string
@@ -4801,7 +4737,7 @@ export namespace Prisma {
     email?: string | null
     firstName?: string | null
     Age?: number | null
-    Sex?: $Enums.Sex | null
+    Sex?: string | null
     MusicalBackground?: $Enums.YesNo | null
     ListenedToRagas?: $Enums.YesNo | null
     createdAt?: Date | string
@@ -4832,7 +4768,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4847,7 +4783,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     Age?: NullableIntFieldUpdateOperationsInput | number | null
-    Sex?: NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
+    Sex?: NullableStringFieldUpdateOperationsInput | string | null
     MusicalBackground?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     ListenedToRagas?: NullableEnumYesNoFieldUpdateOperationsInput | $Enums.YesNo | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

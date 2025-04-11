@@ -24,14 +24,9 @@ enum GroupType {
   nonintervention
 }
 
-enum Sex {
-  Male
-  Female
-}
-
 enum YesNo {
-  Yes
-  No
+  yes
+  no
 }
 
 model User {
@@ -40,7 +35,7 @@ model User {
   email             String?            @unique
   firstName         String?
   Age               Int?
-  Sex               Sex?
+  Sex               String?
   MusicalBackground YesNo?
   ListenedToRagas   YesNo?
   createdAt         DateTime           @default(now())

@@ -23,6 +23,10 @@ export function UsersTable({ users }: { users: any[] }) {
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sex</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Musical Background</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Listend Ragas</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Group</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Baseline Test</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -33,6 +37,11 @@ export function UsersTable({ users }: { users: any[] }) {
               <tr key={user.id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.firstName}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.firstName}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.Age}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.Sex}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.MusicalBackground}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.ListenedToRagas}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">{user.group.toLowerCase()}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <button

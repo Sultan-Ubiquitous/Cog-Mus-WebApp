@@ -163,14 +163,9 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.Sex = exports.$Enums.Sex = {
-  Male: 'Male',
-  Female: 'Female'
-};
-
 exports.YesNo = exports.$Enums.YesNo = {
-  Yes: 'Yes',
-  No: 'No'
+  yes: 'yes',
+  no: 'no'
 };
 
 exports.BaselineTestStatus = exports.$Enums.BaselineTestStatus = {

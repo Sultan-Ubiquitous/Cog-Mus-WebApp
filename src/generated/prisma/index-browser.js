@@ -122,6 +122,10 @@ exports.Prisma.UserScalarFieldEnum = {
   clerkUserId: 'clerkUserId',
   email: 'email',
   firstName: 'firstName',
+  Age: 'Age',
+  Sex: 'Sex',
+  MusicalBackground: 'MusicalBackground',
+  ListenedToRagas: 'ListenedToRagas',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   baselineTest: 'baselineTest',
@@ -159,6 +163,16 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Sex = exports.$Enums.Sex = {
+  Male: 'Male',
+  Female: 'Female'
+};
+
+exports.YesNo = exports.$Enums.YesNo = {
+  Yes: 'Yes',
+  No: 'No'
+};
+
 exports.BaselineTestStatus = exports.$Enums.BaselineTestStatus = {
   completed: 'completed',
   incomplete: 'incomplete'

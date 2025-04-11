@@ -1,21 +1,51 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 const FeedbackForm = () => {
   const [feeling, setFeeling] = useState<string | null>(null);
   const [focusEffect, setFocusEffect] = useState<string | null>(null);
   const [comments, setComments] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const { userId } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!userId) {
+      alert("You need to be signed in to submit feedback");
+      return;
+    }
 
-    // Process the feedback (e.g., send to an API or store it)
-    console.log({ feeling, focusEffect, comments });
+    setIsSubmitting(true);
 
-    // Redirect or show a success message
-    router.push("/");
+    try {
+      const response = await fetch("/api/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          feeling,
+          focusEffect,
+          comments,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit feedback");
+      }
+
+      // Redirect or show a success message
+      router.push("/");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      alert("There was an error submitting your feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -75,12 +105,14 @@ const FeedbackForm = () => {
               onChange={(e) => setComments(e.target.value)}
             />
           </div>
-
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+            disabled={isSubmitting}
+            className={`w-full px-4 py-2 text-white rounded-md transition ${
+              isSubmitting ? "bg-blue-400" : "bg-blue-500 hover:bg-blue-600"
+            }`}
           >
-            Submit Feedback
+            {isSubmitting ? "Submitting..." : "Submit Feedback"}
           </button>
         </form>
       </div>

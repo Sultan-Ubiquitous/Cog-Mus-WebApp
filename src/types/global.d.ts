@@ -9,6 +9,7 @@ declare global {
     metadata: {
       group?: Groups
       firstSignIn?: FirstSignIn
+      role?: Roles
     }
   }
 }

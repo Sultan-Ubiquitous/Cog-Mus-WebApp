@@ -6,10 +6,48 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/app/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum BaselineTestStatus {
+  completed
+  incomplete
+}
+
+enum GroupType {
+  intervention
+  nonintervention
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  clerkUserId         String    @unique
+  email               String?   @unique
+  firstName           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  feedbacks           Feedback[]
+  baselineTest    BaselineTestStatus  @default(incomplete)
+  group GroupType @default(nonintervention)
+
+
+  @@map("users")
+}
+
+model Feedback {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  feeling     String?
+  focusEffect String?
+  comments    String?
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+  @@map("feedbacks")
 }

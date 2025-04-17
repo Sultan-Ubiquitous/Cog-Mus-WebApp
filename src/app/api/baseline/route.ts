@@ -6,8 +6,11 @@ export async function GET() {
   try {
     const { userId } = await auth();
     
-    if(!userId){
-        return {message: 'No Logged In User'}
+    if (!userId) {
+      return NextResponse.json(
+        { message: 'No Logged In User' },
+        { status: 401 }
+      );
     }
 
     const client = await clerkClient();

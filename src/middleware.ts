@@ -18,8 +18,8 @@ export default clerkMiddleware(async (auth, req) => {
     }
 
     if (userId && !sessionClaims?.metadata?.onboardingComplete) {
-      const onboardingUrl = new URL('/onboarding', req.url)
-      return NextResponse.redirect(onboardingUrl)
+      const onboardingUrl = new URL('/onboarding', req.url);
+      return NextResponse.redirect(onboardingUrl);
     }
 
     const url = new URL('/', req.url);

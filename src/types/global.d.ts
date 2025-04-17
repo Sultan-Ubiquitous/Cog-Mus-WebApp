@@ -9,6 +9,7 @@ declare global {
       group?: Groups
       role?: Roles
       onboardingComplete?: boolean
+      baselineTestComplete?: string
     }
   }
 }

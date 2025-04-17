@@ -11,7 +11,12 @@ export default clerkMiddleware(async (auth, req) => {
   }
   const { userId, sessionClaims } = await auth()
 
-  if(isAdminRoute(req) && (await auth()).sessionClaims?.metadata?.role !== 'admin'){
+  if(isAdminRoute(req)) {
+    console.log('Admin route access attempt');
+    console.log('User role:', sessionClaims?.metadata);
+  }
+
+  if(isAdminRoute(req) && sessionClaims?.metadata?.role !== 'admin'){
     const url = new URL('/', req.url);
     return NextResponse.redirect(url);
   }

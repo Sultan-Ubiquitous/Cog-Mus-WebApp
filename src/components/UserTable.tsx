@@ -10,6 +10,7 @@ export function UsersTable({ users }: { users: any[] }) {
   const handleToggle = (userId: string, currentStatus: string) => {
     startTransition(async () => {
       await toggleBaselineStatus(userId, currentStatus)
+      
     })
   }
 

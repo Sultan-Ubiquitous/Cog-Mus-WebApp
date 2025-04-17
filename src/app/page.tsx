@@ -1,5 +1,5 @@
 'use client';
-import { useUser } from "@clerk/nextjs";
+import { useUser, useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -7,32 +7,47 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
 
-  const {isLoaded, user} = useUser();
+  const { isLoaded, user } = useUser();
+  const { userId } = useAuth();
   const [musicPermission, setMusicPermission] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const handleNavigation = (path: string) =>{
-    router.push(path);
-  }
-
-  const checkGroupStatus = ()=>{
-    return user?.publicMetadata?.group;
-  }
-  const baselineTestStatus =()=>{
-    return user?.publicMetadata?.baselineTest;
-  }
-  const playMusic =()=>{
-    if(checkGroupStatus()==='intervention' && baselineTestStatus()==='completed'){
-      setMusicPermission(true);
+  const getBaselineStatus = async () => {
+    try {
+      const response = await fetch('/api/baseline');
+      if (!response.ok) throw new Error('Failed to fetch status');
+      const data = await response.json();
+      console.log(data.status);
+      
+      return data.status;
+    } catch (error) {
+      console.error('Error fetching baseline status:', error);
+      return 'incomplete';
     }
-  }
+  };
 
-
-
+  const verifyMusicPermission = async () => {
+    if (!isLoaded || !user || !userId) return;
+    
+    try {
+      const [groupStatus, baselineStatus] = await Promise.all([
+        user.publicMetadata?.group,
+        getBaselineStatus()
+      ]);
+      
+      if (groupStatus === 'intervention' && baselineStatus === 'completed') {
+        setMusicPermission(true);
+      }
+    } catch (error) {
+      console.error('Error verifying music permission:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     if (user && isLoaded) {
-        playMusic();
+        verifyMusicPermission();
     }
   }, [isLoaded, user]);
 

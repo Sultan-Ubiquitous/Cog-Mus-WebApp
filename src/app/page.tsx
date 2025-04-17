@@ -32,12 +32,27 @@ export default function Home() {
     }
   };
 
+  const getGroupStatus = async () => {
+    try {
+      const response = await fetch('/api/group');
+      if (!response.ok) throw new Error('Failed to fetch status');
+      const data = await response.json();
+      console.log(data.status);
+      
+      return data.status;
+    } catch (error) {
+      console.error('Error fetching baseline status:', error);
+      return 'nonintervention';
+    }
+  };
+
+
   const verifyMusicPermission = async () => {
     if (!isLoaded || !user || !userId) return;
     
     try {
       const [groupStatus, baselineStatus] = await Promise.all([
-        user.publicMetadata?.group,
+        getGroupStatus(),
         getBaselineStatus()
       ]);
       

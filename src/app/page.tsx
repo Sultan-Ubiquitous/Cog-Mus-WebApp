@@ -13,6 +13,11 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+  
+
   const getBaselineStatus = async () => {
     try {
       const response = await fetch('/api/baseline');

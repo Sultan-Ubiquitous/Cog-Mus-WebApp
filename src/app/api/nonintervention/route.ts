@@ -15,7 +15,7 @@ export async function POST(request: NextRequest){
         });
     
         // Update Prisma database
-        const user = await prisma.user.update({
+        await prisma.user.update({
           where: {
             clerkUserId: userId,
           },

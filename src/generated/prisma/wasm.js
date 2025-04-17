@@ -163,11 +163,6 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.YesNo = exports.$Enums.YesNo = {
-  yes: 'yes',
-  no: 'no'
-};
-
 exports.BaselineTestStatus = exports.$Enums.BaselineTestStatus = {
   completed: 'completed',
   incomplete: 'incomplete'

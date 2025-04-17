@@ -32,13 +32,13 @@ enum YesNo {
 
 model User {
   id                  String    @id @default(cuid())
-  clerkUserId         String    @unique
-  email               String?   @unique
+  clerkUserId         String   @unique
+  email               String   @unique
   firstName           String?
-  Age                 Int?
+  Age                 String?
   Sex                 String?
-  MusicalBackground   YesNo?
-  ListenedToRagas     YesNo?
+  MusicalBackground   String?
+  ListenedToRagas     String?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
   feedbacks           Feedback[]

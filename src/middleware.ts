@@ -9,13 +9,13 @@ export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {
     await auth.protect();
   }
+  const { userId, sessionClaims } = await auth()
 
   if(isAdminRoute(req) && (await auth()).sessionClaims?.metadata?.role !== 'admin'){
     const url = new URL('/', req.url);
     return NextResponse.redirect(url);
   }
 
-  const { userId, sessionClaims } = await auth()
     
     if (userId && isOnboardingRoute(req)) {
       return NextResponse.next()

@@ -176,6 +176,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -193,16 +197,17 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres.nwkbizhehkjddkgvdqli:W5dFayc0A3zA5CMs@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
+        "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum BaselineTestStatus {\n  completed\n  incomplete\n}\n\nenum GroupType {\n  intervention\n  nonintervention\n}\n\nenum YesNo {\n  yes\n  no\n}\n\nmodel User {\n  id                String             @id @default(cuid())\n  clerkUserId       String             @unique\n  email             String             @unique\n  firstName         String?\n  Age               String?\n  Sex               String?\n  MusicalBackground String?\n  ListenedToRagas   String?\n  createdAt         DateTime           @default(now())\n  updatedAt         DateTime           @updatedAt\n  feedbacks         Feedback[]\n  baselineTest      BaselineTestStatus @default(incomplete)\n  group             GroupType          @default(nonintervention)\n\n  @@map(\"users\")\n}\n\nmodel Feedback {\n  id                     String   @id @default(cuid())\n  userId                 String\n  user                   User     @relation(fields: [userId], references: [id])\n  focusDifficulty        Int?\n  distractionFrequency   Int?\n  mindWandering          Int?\n  attentionChallenge     Int?\n  calmnessRating         Int?\n  frustrationLevel       String?\n  musicInfluence         String?\n  performanceImprovement String?\n  strategyUse            String?\n  taskPrioritization     String?\n  comments               String?\n  createdAt              DateTime @default(now())\n\n  @@index([userId])\n  @@map(\"feedbacks\")\n}\n",
-  "inlineSchemaHash": "bbdca3cafff4dc6a1189ad6f1e662bfd14da524a48cf0b082702ff2fb9531c03",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum BaselineTestStatus {\n  completed\n  incomplete\n}\n\nenum GroupType {\n  intervention\n  nonintervention\n}\n\nenum YesNo {\n  yes\n  no\n}\n\nmodel User {\n  id                String             @id @default(cuid())\n  clerkUserId       String             @unique\n  email             String             @unique\n  firstName         String?\n  Age               String?\n  Sex               String?\n  MusicalBackground String?\n  ListenedToRagas   String?\n  createdAt         DateTime           @default(now())\n  updatedAt         DateTime           @updatedAt\n  feedbacks         Feedback[]\n  baselineTest      BaselineTestStatus @default(incomplete)\n  group             GroupType          @default(nonintervention)\n\n  @@map(\"users\")\n}\n\nmodel Feedback {\n  id                     String   @id @default(cuid())\n  userId                 String\n  user                   User     @relation(fields: [userId], references: [id])\n  focusDifficulty        Int?\n  distractionFrequency   Int?\n  mindWandering          Int?\n  attentionChallenge     Int?\n  calmnessRating         Int?\n  frustrationLevel       String?\n  musicInfluence         String?\n  performanceImprovement String?\n  strategyUse            String?\n  taskPrioritization     String?\n  comments               String?\n  createdAt              DateTime @default(now())\n\n  @@index([userId])\n  @@map(\"feedbacks\")\n}\n",
+  "inlineSchemaHash": "2b4c6bb3c91efd95ae6a9f7d07ec2de16a4d3c362e16536af01feae497f05736",
   "copyEngine": true
 }
 config.dirname = '/'

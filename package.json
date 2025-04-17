@@ -6,7 +6,8 @@
     "dev": "next dev && prisma generate",
     "build": "next build && prisma generate",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@clerk/backend": "^1.27.3",

@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 
-const isPublicRoute = createRouteMatcher(['/sign-in(.*)']);
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)']);
 const isOnboardingRoute = createRouteMatcher(['/onboarding'])
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
 
@@ -11,7 +11,11 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   if(isAdminRoute(req) && (await auth()).sessionClaims?.metadata?.role !== 'admin'){
-    const { userId, sessionClaims, redirectToSignIn } = await auth()
+    const url = new URL('/', req.url);
+    return NextResponse.redirect(url);
+  }
+
+  const { userId, sessionClaims } = await auth()
     
     if (userId && isOnboardingRoute(req)) {
       return NextResponse.next()
@@ -19,12 +23,16 @@ export default clerkMiddleware(async (auth, req) => {
 
     if (userId && !sessionClaims?.metadata?.onboardingComplete) {
       const onboardingUrl = new URL('/onboarding', req.url);
+      console.log(sessionClaims?.metadata?.onboardingComplete);
+      
       return NextResponse.redirect(onboardingUrl);
     }
 
-    const url = new URL('/', req.url);
-    return NextResponse.redirect(url);
-  }
+    if (!userId && !isPublicRoute(req)) {
+      await auth.protect();
+    }
+
+
 })
 
 export const config = {

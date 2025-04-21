@@ -38,7 +38,6 @@ export function UsersTable({ users }: { users: any[] }) {
               <tr key={user.id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.firstName}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.firstName}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.Age}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.Sex}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.MusicalBackground}</td>
